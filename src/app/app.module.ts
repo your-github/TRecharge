@@ -8,6 +8,9 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { HistoryPage } from '../pages/history/history';
 
+import {ComponentsModule} from '../components/components.module';
+import {MoreComponent} from '../components/more/more';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -16,13 +19,15 @@ import { HistoryPage } from '../pages/history/history';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    ComponentsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
-    HistoryPage
+    HistoryPage,
+    MoreComponent
   ],
   providers: [
     StatusBar,
