@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {ViewController} from 'ionic-angular';
+import {NavParams , ViewController} from 'ionic-angular';
 /**
  * Generated class for the MoreComponent component.
  *
@@ -9,20 +9,28 @@ import {ViewController} from 'ionic-angular';
 @Component({
   selector: 'more',
   template: `
-    <ion-list>
-      <button ion-item (click)="closeView()">History</button>
-    </ion-list>
-  `
+    <button (click)="closePopup()">History</button>
+  `,
+  styles: [`
+    button{
+      width: 100%;
+      height: 40px;
+      background: white;
+      text-align: left;
+    }
+  `]
 })
 export class MoreComponent {
 
-  text: string;
+  data: string;
 
-  constructor(public viewCtrl: ViewController) {
-    this.text = 'Hello World';
+  constructor(
+    public viewCtrl: ViewController,
+    public params: NavParams
+  ) {
   }
 
-  closeView(){
-    this.viewCtrl.dismiss();
+  closePopup(){
+    this.viewCtrl.dismiss(true);
   }
 }
