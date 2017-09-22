@@ -75,7 +75,16 @@ export class HomePage {
   }
 
   scanCode(){
-    this.barcodeScanner.scan().then((cardnumber) =>{
+
+    const option: BarcodeScannerOptions = {
+      'preferFrontCamera': true,
+      'showFlipCameraButton': true,
+      'showTorchButton': true,
+      'torchOn': true,
+      'formats': 'QR_CODE'
+    }
+
+    this.barcodeScanner.scan(option).then((cardnumber) =>{
       // if gotten data from scaned
        if(cardnumber.cancelled==false){
          // Call to telephone center with cardnumber then filled the card to your phone number.
