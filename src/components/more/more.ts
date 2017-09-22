@@ -31,6 +31,7 @@ export class MoreComponent {
   }
 
   closePopup(){
+    /** close pop up menu by using view controller */
     this.viewCtrl.dismiss(true);
   }
 }
