@@ -3,11 +3,13 @@ import { NavController, PopoverController, ModalController } from 'ionic-angular
 import {CallNumber} from '@ionic-native/call-number';
 import {MoreComponent} from '../../components/more/more';
 import {HistoryPage} from '../history/history';
+import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner';
+
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
-  providers: [CallNumber]       //add CallNumber Class to home providers to make this page know CallNumber class
+  providers: [CallNumber,BarcodeScanner]       //add CallNumber Class to home providers to make this page know CallNumber class
 })
 export class HomePage {
   inputCardNumber: string = ""; //Declare inputCardNumber Property to binding with ion-input on html
@@ -15,7 +17,8 @@ export class HomePage {
     public navCtrl: NavController,
     public popoverCtrl: PopoverController,
     public modalCtrl: ModalController,
-    public call: CallNumber
+    public call: CallNumber,
+    public barcodeScanner: BarcodeScanner
   ) {
 
   }
@@ -46,6 +49,7 @@ export class HomePage {
   /** Add rechargeCard method to make phone call for recharge any card*/
   rechargeCard(cnumber: string){
     if(cnumber.length > 0){
+
       const cardNumber = "*121*" + cnumber + "#";   //format card number to recharge card formet
       const date = new Date();
 
@@ -69,4 +73,17 @@ export class HomePage {
       });
     }
   }
+
+  scanCode(){
+    this.barcodeScanner.scan().then((cardnumber) =>{
+      // if gotten data from scaned
+       if(cardnumber.cancelled==false){
+         // Call to telephone center with cardnumber then filled the card to your phone number.
+         this.rechargeCard(cardnumber.text);
+       }
+    },(err) =>{
+
+    })
+  }
+
 }
