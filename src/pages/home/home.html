@@ -21,10 +21,10 @@
 <ion-content>
     <ion-navbar>
       <ion-item>
-        <ion-input type="number" placeholder="Card number"></ion-input>
+        <ion-input type="number" [(ngModel)]="inputCardNumber" placeholder="Card number"></ion-input>
       </ion-item>
       <ion-buttons end>
-        <button ion-button icon-only color="secondary">
+        <button ion-button icon-only color="secondary" (click)="rechargeCard(inputCardNumber)">
           <ion-icon name="call"></ion-icon>
         </button>
       </ion-buttons>
