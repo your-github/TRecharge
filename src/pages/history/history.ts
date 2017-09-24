@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ToastController} from 'ionic-angular';
+import {Clipboard} from '@ionic-native/clipboard'
 
 @IonicPage()
 @Component({
   selector: 'page-history',
   templateUrl: 'history.html',
+  providers: [Clipboard]
 })
 export class HistoryPage {
 
@@ -12,7 +14,9 @@ export class HistoryPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public viewCtrl: ViewController
+    public viewCtrl: ViewController,
+    public toastCtrl: ToastController,
+    public clipboard: Clipboard
     ) {
     /** While opening history page, check histories on localStorage if there are histories stored set it to cards property */
     if(localStorage.getItem("historyCache")){
@@ -28,6 +32,17 @@ export class HistoryPage {
   closeHistoryPage(){
     /** close history page using view controller */
     this.viewCtrl.dismiss();
+  }
+
+  copyHistory(text: string){
+    this.clipboard.copy(text).then(() =>{
+      const copiedToast = this.toastCtrl.create({
+        message: 'Copied to clipboard',
+        duration: 3000,
+        position: 'bottom'
+      });
+      copiedToast.present();
+    });
   }
 
   /** add deleteHistory mathod for delete history list */

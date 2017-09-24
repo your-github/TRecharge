@@ -77,10 +77,9 @@ export class HomePage {
   scanCode(){
 
     const option: BarcodeScannerOptions = {
-      'preferFrontCamera': true,
       'showFlipCameraButton': true,
       'showTorchButton': true,
-      'torchOn': true,
+	  'prompt':'ເຕີມເງີນແບບສະບາຍສະບາຍ',
       'formats': 'QR_CODE'
     }
 

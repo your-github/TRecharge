@@ -6,10 +6,10 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="navcolor">
     <ion-title>Histories</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only color="danger" (click)="closeHistoryPage()">
+      <button ion-button icon-only color="dark" (click)="closeHistoryPage()">
         <ion-icon name="close"></ion-icon>
       </button>
     </ion-buttons>
@@ -24,6 +24,12 @@
         <ion-label>{{card.cn}}</ion-label>
         <ion-label text-end>{{card.d}}</ion-label>
       </ion-item>
+      <ion-item-options side="left">
+        <button ion-button class="btnCopy" (click)="copyHistory(card.cn)">
+          <ion-icon name="copy"></ion-icon>
+          Copy
+        </button>
+      </ion-item-options>
       <ion-item-options side="right">
         <button ion-button color="danger" (click)="deleteHistory(i)">
           <ion-icon name="close"></ion-icon>
